@@ -1,6 +1,8 @@
-package sk.upjs.registracia_konferencia;
+package sk.upjs.registracia_konferencia.persistent;
 
 import java.util.List;
+
+import sk.upjs.registracia_konferencia.entities.Participant;
 
 public interface ParticipantDao {
 

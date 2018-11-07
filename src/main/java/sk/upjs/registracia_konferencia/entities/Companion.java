@@ -1,4 +1,4 @@
-package sk.upjs.registracia_konferencia;
+package sk.upjs.registracia_konferencia.entities;
 
 import java.time.LocalDateTime;
 

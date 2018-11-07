@@ -1,8 +1,9 @@
-package sk.upjs.registracia_konferencia;
+package sk.upjs.registracia_konferencia.entities;
 
 import java.time.LocalDate;
 
 public class Workshop {
+	private Long id;
 	private String name;
 	private LocalDate start;
 	private LocalDate end;
@@ -11,7 +12,12 @@ public class Workshop {
 	private double priceFullLate;
 	private double priceStudentLate;
 	
-	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -55,5 +61,8 @@ public class Workshop {
 		this.priceStudentLate = priceStudentLate;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

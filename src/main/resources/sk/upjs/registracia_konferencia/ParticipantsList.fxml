@@ -14,6 +14,7 @@
          </font>
       </Label>
       <TableView fx:id="participantsTableView" layoutX="14.0" layoutY="117.0" prefHeight="269.0" prefWidth="570.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="117.0" />
-      <Button fx:id="editParticipantButton" layoutX="14.0" layoutY="83.0" mnemonicParsing="false" text="Editovať účastníka" />
+      <Button fx:id="editParticipantButton" disable="true" layoutX="14.0" layoutY="83.0" mnemonicParsing="false" text="Editovať účastníka" />
+      <Button fx:id="editWorkshopsButton" layoutX="140.0" layoutY="83.0" mnemonicParsing="false" text="Spravovať workshopy" />
    </children>
 </AnchorPane>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ChoiceBox fx:id="workshopComboBox" layoutX="205.0" layoutY="29.0" prefWidth="150.0" />
+      <Label layoutX="121.0" layoutY="32.0" text="Workshop">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameTextField" layoutX="209.0" layoutY="106.0" />
+      <TextField fx:id="priceFullLateTextField" layoutX="209.0" layoutY="273.0" />
+      <TextField fx:id="priceFullTextField" layoutX="209.0" layoutY="204.0" />
+      <TextField fx:id="priceStudentTextField" layoutX="209.0" layoutY="239.0" />
+      <TextField fx:id="priceStudentLateTextField" layoutX="209.0" layoutY="309.0" />
+      <DatePicker fx:id="startDatePicker" layoutX="209.0" layoutY="139.0" />
+      <DatePicker fx:id="endDatePicker" layoutX="209.0" layoutY="170.0" />
+      <Label layoutX="84.0" layoutY="110.0" text="Názov" />
+      <Label layoutX="84.0" layoutY="143.0" text="Začiatok" />
+      <Label layoutX="83.0" layoutY="174.0" text="Koniec" />
+      <Label layoutX="84.0" layoutY="208.0" text="Cena bežný" />
+      <Label layoutX="85.0" layoutY="243.0" text="Cena študent" />
+      <Label layoutX="84.0" layoutY="277.0" text="Cena neskorá bežný" />
+      <Label layoutX="84.0" layoutY="313.0" text="Cena neskorá študent" />
+      <Button fx:id="saveButton" layoutX="486.0" layoutY="322.0" mnemonicParsing="false" text="Uložiť" />
+   </children>
+</AnchorPane>

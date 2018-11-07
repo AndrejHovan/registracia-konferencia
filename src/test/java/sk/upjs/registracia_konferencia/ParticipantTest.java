@@ -11,6 +11,11 @@ import org.junit.BeforeClass;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import sk.upjs.registracia_konferencia.entities.Companion;
+import sk.upjs.registracia_konferencia.entities.CompanionCategory;
+import sk.upjs.registracia_konferencia.entities.Participant;
+import sk.upjs.registracia_konferencia.entities.Workshop;
+
 class ParticipantTest {
 	
 	Workshop cidmWorkshop;
