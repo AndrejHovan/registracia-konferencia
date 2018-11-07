@@ -50,5 +50,7 @@ public class WorkshopEditController {
     @FXML
     void initialize() {
         workshopComboBox.setItems(FXCollections.observableList(workshopDao.getAll()));
+        nameTextField.textProperty().bindBidirectional(workshopModel.nameProperty());
+        //priceFullTextField.textProperty().bindBidirectional(workshopModel.priceFullProperty);
     }
 }
