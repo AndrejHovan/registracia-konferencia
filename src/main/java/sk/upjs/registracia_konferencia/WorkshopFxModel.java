@@ -71,7 +71,7 @@ public class WorkshopFxModel {
 	public void setStart(LocalDate start) {
 		this.start.set(start);
 	}
-	public ObjectProperty<LocalDate> propertyStart(){
+	public ObjectProperty<LocalDate> startProperty(){
 		return start;
 	}
 	
@@ -82,7 +82,7 @@ public class WorkshopFxModel {
 	public void setEnd(LocalDate end) {
 		this.end.set(end);
 	}
-	public ObjectProperty<LocalDate> propertyEnd(){
+	public ObjectProperty<LocalDate> endProperty(){
 		return end;
 	}
 	

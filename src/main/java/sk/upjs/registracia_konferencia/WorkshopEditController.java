@@ -1,5 +1,7 @@
 package sk.upjs.registracia_konferencia;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,9 +53,22 @@ public class WorkshopEditController {
     @FXML
     void initialize() {
         workshopComboBox.setItems(FXCollections.observableList(workshopDao.getAll()));
+        workshopComboBox.getSelectionModel().selectedItemProperty()
+        .addListener(new ChangeListener<Workshop>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Workshop> observable, Workshop oldValue, Workshop newValue) {
+				workshopModel.setWorkshop(newValue);
+				
+			}
+		});
+        if(!workshopComboBox.getItems().isEmpty()) {
+        	//mame aspon 1 workshop tak ho vyberieme
+        	workshopComboBox.getSelectionModel().select(workshopComboBox.getItems().get(0));
+        }
         nameTextField.textProperty().bindBidirectional(workshopModel.nameProperty());
-        startDatePicker.valueProperty().bindBidirectional(workshopModel.propertyStart());
-        endDatePicker.valueProperty().bindBidirectional(workshopModel.propertyEnd());
+        startDatePicker.valueProperty().bindBidirectional(workshopModel.startProperty());
+        endDatePicker.valueProperty().bindBidirectional(workshopModel.endProperty());
         priceFullTextField.textProperty().bindBidirectional(workshopModel.priceFullProperty(), new NumberStringConverter());
         priceStudentTextField.textProperty().bindBidirectional(workshopModel.priceStudentProperty(), new NumberStringConverter());
         priceFullLateTextField.textProperty().bindBidirectional(workshopModel.priceFullLateProperty(), new NumberStringConverter());
