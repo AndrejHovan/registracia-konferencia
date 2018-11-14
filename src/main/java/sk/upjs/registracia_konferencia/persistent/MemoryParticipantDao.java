@@ -1,9 +1,12 @@
 package sk.upjs.registracia_konferencia.persistent;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import sk.upjs.registracia_konferencia.entities.Participant;
+import sk.upjs.registracia_konferencia.entities.Tshirt;
 
 public class MemoryParticipantDao implements ParticipantDao {
 	
@@ -16,11 +19,14 @@ public class MemoryParticipantDao implements ParticipantDao {
 		p.setName("Andrej");
 		p.setSurname("Hovan");
 		p.setEmail("nemam@email.sk");
+		p.setTshirt(Tshirt.XL);
+		p.setStart(LocalDateTime.now());
 		this.add(p);
 		Participant p2 = new Participant();
 		p2.setName("Miloš");
 		p2.setSurname("Jakubčin");
 		p2.setEmail("neviem@kodit.com");
+		p2.setTshirt(Tshirt.XL);
 		this.add(p2);
 	}
 	

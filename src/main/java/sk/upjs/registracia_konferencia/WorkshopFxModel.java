@@ -24,7 +24,7 @@ public class WorkshopFxModel {
 	public void setWorkshop(Workshop w) {
 		setId(w.getId());
 		setName(w.getName());
-		setStart(w.getStart());
+		setStart(w.getStart()); // skuska co to spravi
 		setEnd(w.getEnd());
 		setPriceFull(w.getPriceFull());
 		setPriceStudent(w.getPriceStudent());

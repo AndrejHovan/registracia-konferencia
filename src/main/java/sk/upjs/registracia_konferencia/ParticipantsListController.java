@@ -1,6 +1,8 @@
 package sk.upjs.registracia_konferencia;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -24,13 +26,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 import sk.upjs.registracia_konferencia.entities.Participant;
+import sk.upjs.registracia_konferencia.entities.Tshirt;
 import sk.upjs.registracia_konferencia.persistent.ParticipantDao;
 import sk.upjs.registracia_konferencia.persistent.DaoFactory;
 
@@ -104,6 +112,86 @@ public class ParticipantsListController {
 		participantsTableView.getColumns().add(emailCol);
 		columnsVisibility.put("E-mail", emailCol.visibleProperty());
 
+		//tricka
+		TableColumn<Participant, Tshirt> tshirtCol = new TableColumn<>("Tričko");
+		tshirtCol.setCellValueFactory(new PropertyValueFactory<>("tshirt"));
+		tshirtCol.setCellFactory(new Callback<TableColumn<Participant,Tshirt>, TableCell<Participant,Tshirt>>() {
+			
+			@Override
+			public TableCell<Participant, Tshirt> call(TableColumn<Participant, Tshirt> param) {
+				return new ComboBoxTableCell<>(new StringConverter<Tshirt>() {
+
+					@Override
+					public String toString(Tshirt object) {
+						return object == null ? "" : object.name();
+					}
+
+					@Override
+					public Tshirt fromString(String string) {
+						return string == null? null : Tshirt.valueOf(string);
+					}
+				});
+			}
+		});
+		//tshirtCol.setEditable(true);
+		//tshirtCol.setVisible(false);
+		participantsTableView.getColumns().add(tshirtCol);
+		columnsVisibility.put("Tričko", tshirtCol.visibleProperty());
+		
+		TableColumn<Participant, LocalDateTime> startCol = new TableColumn<>("Začiatok");
+		//cezLambdu
+		/*startCol.setCellFactory((TableColumn<Participant,LocalDateTime> param) -> { 
+			return new TableCell<Participant,LocalDateTime>(){
+			
+			@Override
+			protected void updateItem(LocalDateTime item, boolean empty) {
+				super.updateItem(item, empty);
+				if(empty || item == null) {
+					setText("");
+				}else {
+					setText(item.toString());
+				}
+			}
+		});*/
+		
+		startCol.setCellFactory(new Callback<TableColumn<Participant,LocalDateTime>, TableCell<Participant,LocalDateTime>>() {
+			
+			@Override
+			public TableCell<Participant, LocalDateTime> call(TableColumn<Participant, LocalDateTime> param) {
+				return new TableCell<Participant,LocalDateTime>(){
+				
+					private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy H:m");
+					
+					@Override
+					protected void updateItem(LocalDateTime item, boolean empty) {
+						super.updateItem(item, empty);
+						if(empty || item == null) {
+							setText("");
+						}else {
+							setText(formatter.format(item));
+						}
+					}
+				};
+			}
+		});
+		
+		/*startCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Participant,LocalDateTime>, ObservableValue<LocalDateTime>>() {
+			
+			@Override
+			public ObservableValue<LocalDateTime> call(CellDataFeatures<Participant, LocalDateTime> param) {
+				return new SimpleObjectProperty<>(param.getValue().getStart());
+			}
+		});*/
+		
+		//lambda
+		startCol.setCellValueFactory( param -> {
+			return new SimpleObjectProperty<>(param.getValue().getStart());
+		});
+		
+		participantsTableView.getColumns().add(startCol);
+		columnsVisibility.put("Začiatok", startCol.visibleProperty());
+		
+		
 		participantsTableView.setItems(participantsModel);
 		participantsTableView.setEditable(true);
 

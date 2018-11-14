@@ -37,9 +37,9 @@ public class MysqlWorkshopDao implements WorkshopDao {
 				if (timestamp != null) {
 					workshop.setStart(timestamp.toLocalDateTime().toLocalDate());
 				}
-				Timestamp timestamp2 = rs.getTimestamp("end");
-				if (timestamp2 != null) {
-					workshop.setStart(timestamp2.toLocalDateTime().toLocalDate());
+				timestamp = rs.getTimestamp("end");
+				if (timestamp != null) {
+					workshop.setStart(timestamp.toLocalDateTime().toLocalDate());
 				}
 				workshop.setPriceFull(rs.getDouble("price_full"));
 				workshop.setPriceStudent(rs.getDouble("price_student"));
