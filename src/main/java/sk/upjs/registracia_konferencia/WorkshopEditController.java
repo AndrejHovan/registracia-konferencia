@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.util.converter.NumberStringConverter;
 import sk.upjs.registracia_konferencia.entities.Workshop;
 import sk.upjs.registracia_konferencia.persistent.DaoFactory;
 import sk.upjs.registracia_konferencia.persistent.WorkshopDao;
@@ -51,6 +52,11 @@ public class WorkshopEditController {
     void initialize() {
         workshopComboBox.setItems(FXCollections.observableList(workshopDao.getAll()));
         nameTextField.textProperty().bindBidirectional(workshopModel.nameProperty());
-        //priceFullTextField.textProperty().bindBidirectional(workshopModel.priceFullProperty);
+        startDatePicker.valueProperty().bindBidirectional(workshopModel.propertyStart());
+        endDatePicker.valueProperty().bindBidirectional(workshopModel.propertyEnd());
+        priceFullTextField.textProperty().bindBidirectional(workshopModel.priceFullProperty(), new NumberStringConverter());
+        priceStudentTextField.textProperty().bindBidirectional(workshopModel.priceStudentProperty(), new NumberStringConverter());
+        priceFullLateTextField.textProperty().bindBidirectional(workshopModel.priceFullLateProperty(), new NumberStringConverter());
+        priceStudentLateTextField.textProperty().bindBidirectional(workshopModel.priceStudentLateProperty(), new NumberStringConverter());
     }
 }
